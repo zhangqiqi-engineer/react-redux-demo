@@ -6,8 +6,9 @@ const breadcrumbNameMap = {//跟路由路径保持一致
     "/403": "403",
     "/404": "404",
     "/detial": "页面1",
+    "/sub-page1": "功能3 / 一级页面",
     "/friendStatus": "页面2",
-
+    "/sub-page2":"功能3 / 二级页面",
 };
 
 const Nav = withRouter((props) => {

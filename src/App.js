@@ -1,36 +1,32 @@
-import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route,Navigate,Routes,Outlet } from 'react-router-dom';
 import './App.css';
 import 'antd/dist/antd.css';
 import { Provider } from 'react-redux';
-import {mainRouters,adminRouters} from "./routers/index"
+import {mainRouters,adminRouters,mainRoutersMenu} from "./routers/index"
 import Layout from './components/Layout/index'
 import store from './store.js';
 function App() {
-//  const routerRender=(routers)=>{
-//   routers.map((item)=>{
-//     return <Route key={item.path} {...item}>{item.routers&&item.routers.length>0? routerRender(item.routers):null}</Route>
-//   })
-//  }
+ const routerRender=(routers)=>{
+   console.log("routers",routers)
+  return routers.map((item)=>{
+    return <Route key={item.path} {...item}>{item.children&&item.children.length>0? routerRender(item.children):null}</Route>
+  })
+ }
 
   return (
     <Provider store={store}>
-      <Router>
-        <Switch>
+        <BrowserRouter>
+            <Routes>    
+              {/* 渲染登陆路由 */}
               {adminRouters.map((item)=>{
-                return <Route key={item.path} {...item}/>
-              })}
-          <Layout>
-            <Switch>
-            {/* <Route path='/admin' render={routeProps=><LayoutDemo {...routeProps}/>} /> */}  
-              {/* {routerRender(mainRouters)} */}
-              {mainRouters.map((item)=>{
-                return <Route key={item.path} {...item}></Route>
-              })}
-              <Redirect to="/404"/>
-            </Switch>
-          </Layout>
-        </Switch>
-      </Router>
+                  return <Route key={item.path} {...item}></Route>
+              })} 
+              <Route path="/" element={<Layout><Outlet /></Layout>}>
+              {routerRender(mainRouters)}
+              </Route> 
+               <Route path="*" element={<Navigate to="/404"/>} /> 
+            </Routes>
+        </BrowserRouter>
     </Provider>
   );
 }

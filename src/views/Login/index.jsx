@@ -1,12 +1,12 @@
 import React from 'react';
 import { Input, Form, Button,Checkbox } from 'antd';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './index.less';
 function Family() {
-  const history = useHistory();
+  const navigate = useNavigate();
   const onFinish = (values) => {
     console.log('Success:', values);
-    history.replace('/');
+    navigate('/');
   };
 
   const onFinishFailed = (errorInfo) => {

@@ -1,6 +1,6 @@
-import React from 'react';
+import React,{memo}from 'react';
 import {Layout, Menu} from 'antd';
-import { withRouter } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import Nar from'../Nar/index';
 import Header from '../Header/index.js'
@@ -11,13 +11,14 @@ const { Content, Sider } = Layout;
 const menu=mainRoutersMenu.filter(item=>item.isShow);
 
 function LayoutDemo(props) {   
+    const navigate = useNavigate();
 
-const  renderSubMenu = ({path, icon, title, routes}) => {
+const  renderSubMenu = ({path, icon, title, children}) => {
         return (
             <Menu.SubMenu key={path} title={title} icon={icon}>
                 {
-                    routes && routes.map(item => {
-                        return item.routes && item.routes.length > 0 ? renderSubMenu(item) : renderMenuItem(item)
+                    children && children.map(item => {
+                        return item.children && item.children.length > 0 ? renderSubMenu(item) : renderMenuItem(item)
                     })
                 }
             </Menu.SubMenu>
@@ -25,7 +26,7 @@ const  renderSubMenu = ({path, icon, title, routes}) => {
     }
 const   renderMenuItem = ({path, icon, title}) => {
         return (
-            <Menu.Item key={path} onClick={p=>{props.history.push(p.key)}} icon={icon}>
+            <Menu.Item key={path} onClick={p=>{navigate(p.key);console.log("p",p)}} icon={icon}>
             {title}
             </Menu.Item>
         )
@@ -43,7 +44,7 @@ const   renderMenuItem = ({path, icon, title}) => {
         >
             {
                 menu.map(item => {
-                    return item.routes&&item.routes.length>0? renderSubMenu(item) : renderMenuItem(item)
+                    return item.children&&item.children.length>0? renderSubMenu(item) : renderMenuItem(item)
 
                 })
             }
@@ -67,4 +68,4 @@ const   renderMenuItem = ({path, icon, title}) => {
     );
   }
   
-  export default withRouter(LayoutDemo);
+  export default memo(LayoutDemo);

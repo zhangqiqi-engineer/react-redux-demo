@@ -1,13 +1,13 @@
 import { Avatar, Dropdown, Menu, message } from 'antd';
 import { LogoutOutlined, UserOutlined } from '@ant-design/icons';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import React, { memo } from 'react';
 function User({ username = 'admin', exitUrl = '/login' }) {   
-    const history = useHistory();
+    const navigate = useNavigate();
 
     // 用户中心
     const handelUserCenter = () => {
-      history.replace(exitUrl);
+      navigate(exitUrl);
       message.error('已退出登录！');
     };
   

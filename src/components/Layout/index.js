@@ -26,7 +26,7 @@ const  renderSubMenu = ({path, icon, title, children}) => {
     }
 const   renderMenuItem = ({path, icon, title}) => {
         return (
-            <Menu.Item key={path} onClick={p=>{navigate(p.key);console.log("p",p)}} icon={icon}>
+            <Menu.Item key={path} onClick={p=>{navigate(p.key)}} icon={icon}>
             {title}
             </Menu.Item>
         )

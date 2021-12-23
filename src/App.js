@@ -2,12 +2,11 @@ import { BrowserRouter, Route,Navigate,Routes,Outlet } from 'react-router-dom';
 import './App.css';
 import 'antd/dist/antd.css';
 import { Provider } from 'react-redux';
-import {mainRouters,adminRouters} from "./routers/index"
-import Layout from './components/Layout/index'
-import store from './store.js';
+import {mainRouters,adminRouters} from "routers/index"
+import Layout from 'components/Layout/index'
+import store from 'store/index';
 function App() {
  const routerRender=(routers)=>{
-   console.log("routers",routers)
   return routers?.map((item)=>{
     return <Route key={item.path} {...item}>{item.children&&item.children.length>0? routerRender(item.children):null}</Route>
   })

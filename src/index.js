@@ -1,11 +1,12 @@
-import React from 'react';
+import React ,{ lazy, Suspense }from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import './locales/index';
 
 ReactDOM.render(
-    <App />,
+    <Suspense fallback={<div>Loading</div>}><App /></Suspense>,
   document.getElementById('root')
 );
 

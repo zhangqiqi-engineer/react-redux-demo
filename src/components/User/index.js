@@ -26,7 +26,7 @@ function User({ username = 'admin', exitUrl = '/login' }) {
     );
     return (
       <div className="user">
-        <Avatar shape="square" size="small" icon={<UserOutlined />} />
+        <Avatar shape="square" size="small" style={{ marginLeft: 10}} icon={<UserOutlined />} />
         <Dropdown overlay={menu} placement="bottomCenter" trigger={[ 'click' ]}>
             <span style={{ marginLeft: 10, marginRight: 30 ,color: '#fff'}}>{username||'111'}</span>
         </Dropdown>

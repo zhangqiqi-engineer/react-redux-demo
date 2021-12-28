@@ -1,9 +1,10 @@
-import Login from "../views/Login";
-import Home from "../views/Home";
-import Family from "../views/Family";
-import NoFound from "../views/NoFound";
-import FriendStatus from "../views/FriendStatus";
-import Welcome from "../views/Welcome";
+import Login from "views/Login";
+import Home from "views/Home";
+import Family from "views/Family";
+import NoFound from "views/NoFound";
+import FriendStatus from "views/FriendStatus";
+import Welcome from "views/Welcome";
+import Translate from "views/Translate";
 import { SmileOutlined, CrownOutlined, TabletOutlined,AlignLeftOutlined,SnippetsOutlined } from '@ant-design/icons';
 import { Outlet } from 'react-router-dom';
 
@@ -88,7 +89,7 @@ export const mainRouters=[
                 path: 'sub-page2',
                 title: '二级页面',
                 icon: <SnippetsOutlined />,
-                element: <Welcome/>,
+                element: <Translate/>,
                 exact:true,
                 },   
             ],

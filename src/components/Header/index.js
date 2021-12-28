@@ -2,6 +2,7 @@ import React from 'react';
 import {Layout, Menu} from 'antd';
 import User from '../User/index';
 import Fullscreen from '../Fullscreen/index';
+import I18n from '../I18n/index';
 import './index.less';
 const { Header } = Layout;
 
@@ -19,6 +20,7 @@ function demo() {
             
         </div> 
         <div className="row">
+          <I18n></I18n>
           <User></User>
           <Fullscreen />
         </div>

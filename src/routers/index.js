@@ -5,7 +5,9 @@ import NoFound from "views/NoFound";
 import FriendStatus from "views/FriendStatus";
 import Welcome from "views/Welcome";
 import Translate from "views/Translate";
-import { SmileOutlined, CrownOutlined, TabletOutlined,AlignLeftOutlined,SnippetsOutlined } from '@ant-design/icons';
+import DocumentCenter from "views/DocumentCenter";
+import FlowChart from "views/FlowChart";
+import { SmileOutlined, CrownOutlined, FileMarkdownOutlined,ApartmentOutlined,AlignLeftOutlined,TabletOutlined,SnippetsOutlined } from '@ant-design/icons';
 import { Outlet } from 'react-router-dom';
 
 // 用于menu导航的展示
@@ -36,15 +38,27 @@ export const mainRoutersMenu=[
         children: [
             {
               path: 'admin/sub-page1',
-              title: '一级页面',
+              title: '文本编辑',
               icon: <SnippetsOutlined />,         
             }, 
             {
                 path: 'admin/sub-page2',
-                title: '二级页面',
+                title: '汉译英',
                 icon: <SnippetsOutlined />,
               },   
           ],
+    },
+    {
+        path:'documentCenter',
+        isShow:true,
+        title:'文档中心', 
+        icon:<FileMarkdownOutlined/>
+    },
+    {
+        path:'flowChart',
+        isShow:true,
+        title:'可视化流程图', 
+        icon:<ApartmentOutlined />
     },
 
 ];
@@ -79,7 +93,7 @@ export const mainRouters=[
         children: [
             {
                 path: 'sub-page1',
-                title: '一级页面',
+                title: '文本编辑',
                 icon: <SnippetsOutlined />,
                 element: <Welcome/>,
                 exact:true,
@@ -87,7 +101,7 @@ export const mainRouters=[
             }, 
             {
                 path: 'sub-page2',
-                title: '二级页面',
+                title: '汉译英',
                 icon: <SnippetsOutlined />,
                 element: <Translate/>,
                 exact:true,
@@ -95,6 +109,20 @@ export const mainRouters=[
             ],
         
     },  
+    {
+        path:'documentCenter',
+        element:<DocumentCenter/>, 
+        exact:true,
+        title:'文档中心', 
+        icon:<FileMarkdownOutlined />
+    },
+    {
+        path:'flowChart',
+        element:<FlowChart/>, 
+        exact:true,
+        title:'可视化流程图', 
+        icon:<ApartmentOutlined />
+    },
     {
         path:'404',
         element:<NoFound/>

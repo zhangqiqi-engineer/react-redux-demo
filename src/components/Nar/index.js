@@ -9,8 +9,10 @@ const breadcrumbNameMap = {//跟路由路径保持一致
     "/detial": "页面1",
     "/friendStatus": "页面2",
     "/admin": "功能3",
-    "/sub-page2":"二级页面",
-    "/sub-page1":"一级页面",
+    "/sub-page2":"汉译英",
+    "/sub-page1":"文本编辑",
+    "/flowChart":"可视化流程图",
+    "/documentCenter":"文档中心",
 };
 
 const Nav =((props) => {

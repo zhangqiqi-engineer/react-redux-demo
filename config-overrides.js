@@ -2,18 +2,8 @@ const { override, fixBabelImports, addLessLoader,addWebpackAlias } = require('cu
 const path = require('path')
 
 
-const alter_config= ()=>(config, env)=>{
-  config.module.rules= [
-    {
-      test: /\.md$/,
-      use: "raw-loader"
-    }]
-
-  return config;
-}
 
 module.exports = override(
-  alter_config(),   //将自定义配置组合进来
   fixBabelImports('import',{
     libraryName: 'antd', // 或其他第三方组件库名称
     libiaryDirectory: 'es', // 组件位置

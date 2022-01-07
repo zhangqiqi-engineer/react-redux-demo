@@ -7,6 +7,7 @@ import Welcome from "views/Welcome";
 import Translate from "views/Translate";
 import DocumentCenter from "views/DocumentCenter";
 import FlowChart from "views/FlowChart";
+import Register from "views/Register";
 import { SmileOutlined, CrownOutlined, FileMarkdownOutlined,ApartmentOutlined,AlignLeftOutlined,TabletOutlined,SnippetsOutlined } from '@ant-design/icons';
 import { Outlet } from 'react-router-dom';
 
@@ -134,7 +135,13 @@ export const adminRouters=[
         path:'/login',
         element:<Login/>,
         isShow:false,
-        title:'登陆',     
+        title:'登录',     
+    },
+    {
+        path:'/register',
+        element:<Register/>,
+        isShow:false,
+        title:'注册',     
     },
     
 ]

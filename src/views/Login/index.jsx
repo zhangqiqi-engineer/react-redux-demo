@@ -1,23 +1,32 @@
 import React from 'react';
-import { Input, Form, Button,Checkbox } from 'antd';
+import { Input, Form, Button,Checkbox,Message } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import * as Api from "services/index.js";
+
 import './index.less';
-function Family() {
+function Login() {
   const navigate = useNavigate();
-  const onFinish = (values) => {
+  const onFinish = async(values) => {
     console.log('Success:', values);
-    navigate('/');
+    const res=await Api.post('/api/login',{userName:values.userName,password:values.password});
+    if(res.state===1){
+      navigate('/');
+    }else{
+      Message.error(`${res.msg}`)
+    }
+
+    
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
 
-  
+
     return (
       <div className="loginBox">
       <div className="loginCard">
-      <h1>登陆</h1>
+      <h1>登录</h1>
        <Form
       name="basic"
       labelCol={{ span: 6 }}
@@ -28,34 +37,36 @@ function Family() {
       autoComplete="off"
     >
       <Form.Item
-        label="Username"
-        name="username"
-        rules={[{ required: true, message: 'Please input your username!' }]}
+        label="用户名"
+        name="userName"
+        rules={[{ required: true, message: '请输入用户名!' }]}
       >
         <Input />
       </Form.Item>
 
       <Form.Item
-        label="Password"
+        label="密码"
         name="password"
-        rules={[{ required: true, message: 'Please input your password!' }]}
+        rules={[{ required: true, message: '请输入密码!' }]}
       >
         <Input.Password />
       </Form.Item>
 
-      <Form.Item name="remember" valuePropName="checked" wrapperCol={{ offset: 6, span: 16 }}>
-        <Checkbox>Remember me</Checkbox>
+      <Form.Item name="记住我" valuePropName="checked" wrapperCol={{ offset: 6, span: 16 }}>
+        <Checkbox>记住密码</Checkbox>
       </Form.Item>
 
       <Form.Item wrapperCol={{ offset: 6, span: 16 }}>
-        <Button type="primary" htmlType="submit">
-          Submit
+        <Button type="primary" htmlType="submit" className='mr-15'>
+          登录
         </Button>
+        还没有注册? 点击这里去 <Button type="link" onClick={()=> navigate('/register')}>注册</Button>
       </Form.Item>
+
     </Form>
     </div>
     </div>
     );
   }
   
-  export default React.memo(Family)
+  export default React.memo(Login)

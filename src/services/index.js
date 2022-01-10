@@ -18,7 +18,7 @@ instance.interceptors.request.use(function (config) {
 // 此处可以根据服务器的返回状态码作相应的数据 404 401 500
 instance.interceptors.response.use(function (response) {
  
-    return response;
+    return response.data;
 }, function (err) {
     return Promise.reject(err);
 });

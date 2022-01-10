@@ -2,7 +2,7 @@ import Login from "views/Login";
 import Home from "views/Home";
 import Family from "views/Family";
 import NoFound from "views/NoFound";
-import FriendStatus from "views/FriendStatus";
+import UserManagement from "views/UserManagement";
 import Welcome from "views/Welcome";
 import Translate from "views/Translate";
 import DocumentCenter from "views/DocumentCenter";
@@ -20,15 +20,15 @@ export const mainRoutersMenu=[
         icon:<SmileOutlined/>
     },
     {
-        path:'detial',
+        path:'roleManagement',
         isShow:true,
-        title:'功能1', 
+        title:'角色管理', 
         icon:<CrownOutlined/>
     },
     {
-        path:'friendStatus',
+        path:'userManagement',
         isShow:true,
-        title:'功能2', 
+        title:'用户管理', 
         icon:<TabletOutlined/>
     },
     {
@@ -72,17 +72,17 @@ export const mainRouters=[
         icon:<SmileOutlined/>
     },
     {
-        path:'detial',
+        path:'roleManagement',
         element:<Family/>, 
         exact:true,
-        title:'功能1', 
+        title:'角色管理', 
         icon:<CrownOutlined/>
     },
     {
-        path:'friendStatus',
-        element:<FriendStatus/>, 
+        path:'userManagement',
+        element:<UserManagement/>, 
         exact:true,
-        title:'功能2', 
+        title:'用户管理', 
         icon:<TabletOutlined/>
     },
     {

@@ -9,7 +9,7 @@ function Login() {
   const onFinish = async(values) => {
     console.log('Success:', values);
     const res=await Api.post('/api/login',{userName:values.userName,password:values.password});
-    if(res.state===1){
+    if(res.code==1){
       navigate('/');
     }else{
       Message.error(`${res.msg}`)

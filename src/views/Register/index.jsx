@@ -11,13 +11,14 @@ function Register() {
 
   const onFinish = async(values) => {
     const res=await Api.post('/api/register',{userName:values.userName,password:values.password,phone:values.phone,email:values.email,gender:values.gender});
-    if(res.state===1){
+    console.log("res",res)
+    if(res.code==1){
       Message.success(`${res.msg}`)
     }else{
       Message.error(`${res.msg}`)
     }
 
-    
+
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -104,8 +105,8 @@ function Register() {
         rules={[{ required: true, message: '请选择性别!' }]}
       >
         <Select placeholder="请选择性别">
-          <Option value="male">女</Option>
-          <Option value="female">男</Option>
+          <Option value="man">男</Option>
+          <Option value="woman">女</Option>
           <Option value="other">其他</Option>
         </Select>
       </Form.Item>

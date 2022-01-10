@@ -6,8 +6,8 @@ import { useLocation } from 'react-router-dom';
 const breadcrumbNameMap = {//跟路由路径保持一致
     "/403": "403",
     "/404": "404",
-    "/detial": "页面1",
-    "/friendStatus": "页面2",
+    "/roleManagement": "角色管理",
+    "/userManagement": "用户管理",
     "/admin": "功能3",
     "/sub-page2":"汉译英",
     "/sub-page1":"文本编辑",

@@ -78,8 +78,10 @@ const genderList ={"man":"男","woman":"女","other":"其他"};
             <Button type="link" onClick={()=>edit(record)}>编辑</Button>
             <Divider type="vertical" />
             <Popconfirm
-              title="确定删除这个任务吗？"
+              title="确定删除？"
               onConfirm={() => deletehandle(record.id)}
+              okText="确认"
+              cancelText="取消"
             >
              <Button type="link">删除</Button>
             </Popconfirm>

@@ -7,7 +7,8 @@ const instance = axios.create({
 // 请求拦截
 // 所有的网络请求都会先走这个方法，我们可以在它里面添加一些自定义内容
 instance.interceptors.request.use(function (config) {
-    config.headers.token = '111111';
+    // config.headers.token = ;
+    config.headers.Authorization = 'Bearer ' +localStorage.getItem("token");
     return config;
 }, function (err) {
     return Promise.reject(err);

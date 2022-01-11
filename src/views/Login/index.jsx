@@ -7,10 +7,11 @@ import './index.less';
 function Login() {
   const navigate = useNavigate();
   const onFinish = async(values) => {
-    console.log('Success:', values);
     const res=await Api.post('/api/login',{userName:values.userName,password:values.password});
+    console.log("res",res)
     if(res.code==1){
       navigate('/');
+      localStorage.setItem("token",res.data.token);
     }else{
       Message.error(`${res.msg}`)
     }

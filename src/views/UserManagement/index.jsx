@@ -11,14 +11,17 @@ const genderList ={"man":"男","woman":"女","other":"其他"};
     const [visible,setVisible] = useState(false);
     const [isNew,setIsNew] = useState(false);
     const [record,setRecord] = useState({});
+    const [ refresh, setRefresh ] = useState(false);
+
 
 
     useEffect(() => {
         queryList();
-      },[]);
+      },[refresh]);
 
     const queryList = async()=>{
-        const res = await Api.post('/api/employee/list',{});
+        const res = await Api.post('/api/employee/list',{})||[];
+        
         setData(res)
 
       }
@@ -26,15 +29,13 @@ const genderList ={"man":"男","woman":"女","other":"其他"};
     const deletehandle=() => {
 
     }
-    const edit=()=>{
-      console.log('edit')
+    const edit=(record)=>{
 
       setVisible(true);
       setRecord(record);
       setIsNew(false);
     }
     const add=()=>{
-      console.log('!!!')
       setVisible(true);
       setRecord({});
       setIsNew(true);
@@ -42,8 +43,8 @@ const genderList ={"man":"男","woman":"女","other":"其他"};
     const columns = [
         {
           title: '用户名',
-          dataIndex: 'user_name',
-          key: 'user_name',
+          dataIndex: 'userName',
+          key: 'userName',
         },
         {
           title: '性别',
@@ -79,7 +80,7 @@ const genderList ={"man":"男","woman":"女","other":"其他"};
          
                     <Button type="primary" className='mb_10' onClick={()=>add()}><PlusOutlined />新增</Button>
                     <Table columns={columns} dataSource={data} />
-                    <UserModal visible={visible} onClose={() => setVisible(false)} detial={record} isNew={isNew}>
+                    <UserModal visible={visible} onClose={() => setVisible(false)} detial={record} isNew={isNew} refresh={() => setRefresh(!refresh)}>
                     </UserModal>
            
                 </div> 

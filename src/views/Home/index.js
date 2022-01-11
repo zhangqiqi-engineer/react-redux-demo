@@ -26,8 +26,8 @@ const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30; // Moment is 
         }
       }
     const  queryUser=async()=> {
-        const res=await Api.get('/by-api/bd/fam/list',{type:'1',userId:'111'})
-        console.log('res',res);   
+        // const res=await Api.get('/by-api/bd/fam/list',{type:'1',userId:'111'})
+        // console.log('res',res);   
     }
     
         return (

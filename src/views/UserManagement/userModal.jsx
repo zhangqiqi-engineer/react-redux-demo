@@ -1,39 +1,63 @@
-import { Button, Form, InputNumber, Modal, Select, Space, message,Input } from 'antd';
+import { Button, Form, Modal, Select, Space, message,Input } from 'antd';
 
 import React, { memo, useEffect, useState } from 'react';
+import * as Api from "services/index.js";
 
 const formLayout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 14 },
 };
+
 const { Option } = Select;
 const FreModal = props => {
   const { visible, onClose, refresh, detial, isNew } = props;
   const [ form ] = Form.useForm();
   const [ loading, setLoading ] = useState(false);
 
-//   async function addChannel(params) {
-//     const obj = {
-//       riskCount: isNew ? JSON.stringify({ ...params, interval: 'm' }) : JSON.stringify({ ...params, id: detial.id, interval: 'm' }),
-//       appName: localStorage.getItem('appName'),
-//       modifyType: isNew ? 'c' : 'u',
-//       operType: 'riskCount',
-//     };
-//     try {
-//       setLoading(true);
-//       const data = await request.policyMan.getPolicyAdd(obj);
-//       if (data) {
-//         message.success('添加成功');
-//         onClose();
-//         refresh();
-//       }
-//     } finally {
-//       setLoading(false);
-//     }
-//   }
+  const addChannel=async(params)=> {
+    const obj = {
+    ...params,
+    };
+    try {
+      setLoading(true);
+      const res = await Api.post('/api/employee/add',obj);
+      if (res.code==1) {
+        message.success(`${res.msg}`);
+        onClose();
+        refresh();
+      }else{
+        message.error(`${res.msg}`)
+   
+      }
+    } finally {
+      setLoading(false);
+    }
+  }
 
-  function handleOnFinish(values) {
-    // addChannel(values);
+  const updateChannel=async(params)=>{
+    const obj = {
+    ...params,
+    id:detial.id,
+    };
+    try {
+      setLoading(true);
+      const res = await Api.post('/api/employee/update',obj);
+      if (res.code==1) {
+        message.success(`${res.msg}`);
+        onClose();
+        refresh();
+      }else{
+        message.error(`${res.msg}`)
+
+      }
+    } finally {
+      setLoading(false);
+    }
+
+  }
+  const handleOnFinish=(values)=> {
+    
+    isNew?addChannel(values):updateChannel(values);
   }
 
   const handleCancel = () => {
@@ -48,14 +72,7 @@ const FreModal = props => {
     }
   }, [ isNew, visible ]);
 
-  const prefixSelector = (
-    <Form.Item name="prefix" noStyle>
-      <Select style={{ width: 70 }}>
-        <Option value="86">+86</Option>
-        <Option value="87">+87</Option>
-      </Select>
-    </Form.Item>
-  );
+
   return (
     <Modal
       title={isNew ? '新增用户' : '编辑用户'}
@@ -105,7 +122,7 @@ const FreModal = props => {
         label="手机号"
         rules={[{ required: true, message: '请输入手机号!' }]}
       >
-        <Input addonBefore={prefixSelector} style={{ width: '100%' }} />
+        <Input  style={{ width: '100%' }} />
       </Form.Item>
       <Form.Item
         name="email"

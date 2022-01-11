@@ -11,6 +11,7 @@ const formLayout = {
 const { Option } = Select;
 const FreModal = props => {
   const { visible, onClose, refresh, detial, isNew } = props;
+  console.log("detial",detial)
   const [ form ] = Form.useForm();
   const [ loading, setLoading ] = useState(false);
 
@@ -39,6 +40,7 @@ const FreModal = props => {
     ...params,
     id:detial.id,
     };
+      
     try {
       setLoading(true);
       const res = await Api.post('/api/employee/update',obj);
@@ -94,28 +96,6 @@ const FreModal = props => {
         rules={[{ required: true, message: '请输入用户名!' }]}
       >
         <Input />
-      </Form.Item>
-
-      <Form.Item
-        label="密码"
-        name="password"
-        rules={[{ required: true, message: '请输入密码!' }]}
-      >
-        <Input.Password />
-      </Form.Item>
-      <Form.Item
-        label="确认密码"
-        name="ConPassword"
-        rules={[{ required: true, message: '请输入密码' }, ({ getFieldValue }) => ({
-            validator(_, value) {
-              if (!value || getFieldValue('password') === value) {
-                return Promise.resolve();
-              }
-              return Promise.reject(new Error('请保持两次密码输入一致！'));
-            },
-          }),]}
-      >
-        <Input.Password />
       </Form.Item>
       <Form.Item
         name="phone"

@@ -2,7 +2,7 @@ import React,{ useState, useEffect } from 'react';
 import {connect} from 'react-redux';
 import { PlusOutlined } from '@ant-design/icons';
 import UserModal from './userModal.jsx';
-import { Table,Button,Divider } from 'antd';
+import { Table,Button,Divider,message,Popconfirm } from 'antd';
 import * as Api from "services/index.js";
 
 const genderList ={"man":"男","woman":"女","other":"其他"};
@@ -26,8 +26,16 @@ const genderList ={"man":"男","woman":"女","other":"其他"};
 
       }
 
-    const deletehandle=() => {
-
+    const deletehandle=async(id) => {
+      const res = await Api.post('/api/employee/delete',{id});
+      console.log("res",res)
+      if (res.code==1) {
+        message.success(`${res.msg}`);
+        queryList();
+      }else{
+        message.error(`${res.msg}`)
+   
+      }
     }
     const edit=(record)=>{
 
@@ -69,7 +77,13 @@ const genderList ={"man":"男","woman":"女","other":"其他"};
             render: (text,record) => <>
             <Button type="link" onClick={()=>edit(record)}>编辑</Button>
             <Divider type="vertical" />
-            <Button type="link" onClick={()=>deletehandle(record.id)}>删除</Button>
+            <Popconfirm
+              title="确定删除这个任务吗？"
+              onConfirm={() => deletehandle(record.id)}
+            >
+             <Button type="link">删除</Button>
+            </Popconfirm>
+            
             </>,
         },
       ];

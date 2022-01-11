@@ -71,6 +71,11 @@ const genderList ={"man":"男","woman":"女","other":"其他"};
           dataIndex: 'phone',
         },
         {
+          title: '创建时间',
+          key: 'createTime',
+          dataIndex: 'createTime',
+        }, 
+        {
             title: '操作',
             key: 'id',
             dataIndex: 'id',

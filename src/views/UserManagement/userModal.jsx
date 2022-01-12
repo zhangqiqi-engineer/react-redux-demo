@@ -28,7 +28,6 @@ const FreModal = props => {
         refresh();
       }else{
         message.error(`${res.msg}`)
-   
       }
     } finally {
       setLoading(false);

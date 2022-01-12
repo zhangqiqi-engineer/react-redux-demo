@@ -18,7 +18,13 @@ instance.interceptors.request.use(function (config) {
 // 所有的网络请求返回数据之后都会先执行此方法
 // 此处可以根据服务器的返回状态码作相应的数据 404 401 500
 instance.interceptors.response.use(function (response) {
- 
+    const { data, config } = response;
+
+ if(data.code==301){
+     //登录超时，跳转登录页面
+     window.location.href =  '/Login';
+
+ }
     return response.data;
 }, function (err) {
     return Promise.reject(err);

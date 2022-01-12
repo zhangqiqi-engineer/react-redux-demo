@@ -12,6 +12,9 @@ function Login() {
     if(res.code==1){
       navigate('/');
       localStorage.setItem("token",res.data.token);
+      localStorage.setItem("userName",res.data.userName);
+      localStorage.setItem("id",res.data.id);
+
     }else{
       Message.error(`${res.msg}`)
     }

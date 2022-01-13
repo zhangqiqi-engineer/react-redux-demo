@@ -10,9 +10,14 @@ function User({userName="admin",exitUrl = '/login' }) {
     const [vis,setVis] = useState(false);
 
     // 用户中心
-    const handelUserCenter = () => {
+    const handelUserCenter = async() => {
+      const res=await Api.post('/api/user/logOut',{});
+      if (res.code==1) {
+        message.success(`${res.msg}`); 
+      }else{
+        message.error(`${res.msg}`)
+      }
       navigate(exitUrl);
-      message.error('已退出登录！');
     };
   
     const handlePassword=()=>{
